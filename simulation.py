@@ -14,7 +14,7 @@ class Simulation(object):
     infected people in a population are all variables that can be set when the program is run.
     '''
 
-    def __init__(self, virus, pop_size, vacc_percentage, initial_infected=1):
+    def __init__(self, pop_size, vacc_percentage, initial_infected, virus):
         ''' Logger object logger records all events during the simulation.
         Population represents all Persons in the population.
         The next_person_id is the next available id for all created Persons,
@@ -24,7 +24,7 @@ class Simulation(object):
         You will need to keep track of the number of people currently infected with the disease.
         The total infected people is the running total that have been infected since the
         simulation began, including the currently infected people who died.
-        You will also need to keep track of the number of people that have die as a result
+        You will also need to keep track of the number of people that have died as a result
         of the infection.
 
         All arguments will be passed as command-line arguments when the file is run.
@@ -37,19 +37,22 @@ class Simulation(object):
         # TODO: Store each newly infected person's ID in newly_infected attribute.
         # At the end of each time step, call self._infect_newly_infected()
         # and then reset .newly_infected back to an empty list.
-        self.logger = None
-        self.population = [] # List of Person objects
-        self.pop_size = pop_size # Int
-        self.next_person_id = 0 # Int
-        self.virus = virus # Virus object
+        self.logger = Logger('logger.py')
         self.initial_infected = initial_infected # Int
+        self.population = [] # List of Person objects, holds population after create_population is called
+        self.pop_size = pop_size # Int amnt of population for create_population function
+        self.next_person_id = 0 # Int to iterate and store unique person id
+        self.virus = virus # Virus object
         self.total_infected = 0 # Int
         self.current_infected = 0 # Int
         self.vacc_percentage = vacc_percentage # float between 0 and 1
         self.total_dead = 0 # Int
         self.file_name = "{}_simulation_pop_{}_vp_{}_infected_{}.txt".format(
-            virus_name, population_size, vacc_percentage, initial_infected)
+            virus_name, pop_size, vacc_percentage, initial_infected)
         self.newly_infected = []
+        self._create_population(self.initial_infected)
+        self._simulation_should_continue()
+        
 
     def _create_population(self, initial_infected):
         '''This method will create the initial population.
@@ -69,7 +72,31 @@ class Simulation(object):
 
         # Use the attributes created in the init method to create a population that has
         # the correct intial vaccination percentage and initial infected.
-        pass
+        while self.next_person_id in range (0, int(self.pop_size)):
+            """Vaccinated People"""
+            for self.next_person_id in range(0, int(self.pop_size * self.vacc_percentage)):
+                self.population.append(Person(self.next_person_id, True, None))
+                self.next_person_id += 1
+            # for testing purposes
+            vaccinated = len(self.population)
+            print(f'vaccinated people:{vaccinated}')
+            """Infected People"""
+            for self.next_person_id in range (0, int(self.initial_infected)):
+                self.population.append(Person(self.next_person_id, False, self.virus))
+                self.next_person_id += 1
+            # for testing purposes
+            infected = len(self.population) - vaccinated
+            print(f'infected people:{infected}')
+            """Unvaccinated, Uninfected People"""
+            for self.next_person_id in range(len(self.population), int(self.pop_size)):
+                self.population.append(Person(self.next_person_id, False, None))
+                self.next_person_id += 1
+            # for testing purposes
+            others = vaccinated + infected
+            unvacc = len(self.population) - others
+            print(f'unvaccinated uninfected people:{unvacc}')
+        print(len(self.population))
+        return self.population
 
     def _simulation_should_continue(self):
         ''' The simulation should only end if the entire population is dead
@@ -79,7 +106,16 @@ class Simulation(object):
                 bool: True for simulation should continue, False if it should end.
         '''
         # TODO: Complete this helper method.  Returns a Boolean.
-        pass
+            
+        if self.total_dead == len(self.population):
+            return False
+        else:
+            for person in self.population:
+                if person.is_vaccinated == True:
+                    continue
+                else:
+                    return True
+            return False
 
     def run(self):
         ''' This method should run the simulation until all requirements for ending
@@ -166,7 +202,15 @@ if __name__ == "__main__":
     else:
         initial_infected = 1
 
-    virus = Virus(name, repro_rate, mortality_rate)
+    virus = Virus(virus_name, repro_num, mortality_rate)
+    # print(virus_name)
+    # print(repro_num)
+    # print(mortality_rate)
+    # print(pop_size)
+    # print(vacc_percentage)
+    # print(initial_infected)
+    # print(virus)
     sim = Simulation(pop_size, vacc_percentage, initial_infected, virus)
+    print(sim._simulation_should_continue())
 
     sim.run()
