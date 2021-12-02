@@ -27,16 +27,21 @@ class Person(object):
         '''
         # Only called if infection attribute is not None.
         # TODO:  Finish this method. Should return a Boolean
+        assert self.is_vaccinated == False
+        assert self.infection != None
         if self.infection != None:
             virus = self.infection
             rand_num = random.random()
-            if rand_num < virus.mortality_rate:
+            # print(rand_num)
+            if rand_num <= virus.mortality_rate:
                 self.is_alive = False
+                self.infection = None
+                return self.is_alive
             else:
                 self.is_alive = True
                 self.is_vaccinated = True
                 self.infection = None
-            return self.is_alive
+                return self.is_alive
 
 
 ''' These are simple tests to ensure that you are instantiating your Person class correctly. '''
