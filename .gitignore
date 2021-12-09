@@ -163,7 +163,6 @@ cython_debug/
 
 # Large files
 Ebola_simulation_pop_10000_vp_0.9_infected_10.txt
-SARS-CoV-2_simulation_pop_100000_vp_0.6_infected_113.txt
 
 
 # End of https://www.toptal.com/developers/gitignore/api/python,visualstudiocode

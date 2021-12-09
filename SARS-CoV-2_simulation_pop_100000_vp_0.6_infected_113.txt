@@ -1,0 +1,9 @@
+Virus name: SARS-CoV-2 Population Size: 100000 Vaccine Percentage: 0.6 Virus Mortality Rate: 0.016 Virus Reproduction Rate: 0.9 Initial Infected: 113
+Number of people infected: 3873 Total infected: 3873 Number of people who died: 2 Total people dead: 2 Number of People Vaccinated from Survival: 111 Total people Vaccinated: 60111
+Time step 0 ended, beginning 1
+Number of people infected: 34899 Total infected: 38772 Number of people who died: 46 Total people dead: 48 Number of People Vaccinated from Survival: 3827 Total people Vaccinated: 63938
+Time step 1 ended, beginning 2
+Number of people infected: 1115 Total infected: 39887 Number of people who died: 568 Total people dead: 616 Number of People Vaccinated from Survival: 34331 Total people Vaccinated: 98269
+Time step 2 ended, beginning 3
+Number of people infected: 0 Total infected: 39887 Number of people who died: 20 Total people dead: 636 Number of People Vaccinated from Survival: 1095 Total people Vaccinated: 99364
+Time step 3 ended, beginning 4
