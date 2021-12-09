@@ -36,12 +36,12 @@ class Person(object):
             if rand_num <= virus.mortality_rate:
                 self.is_alive = False
                 self.infection = None
-                return self.is_alive
+                return False
             else:
                 self.is_alive = True
                 self.is_vaccinated = True
                 self.infection = None
-                return self.is_alive
+                return True
 
 
 ''' These are simple tests to ensure that you are instantiating your Person class correctly. '''

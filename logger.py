@@ -28,7 +28,7 @@ class Logger(object):
         # event logged ends up on a separate line!
         # f = open(f"{virus_name}_simulation_pop_{pop_size}_vp_{vacc_percentage}_infected_{initial_infected}.txt", "w")
         f = open(self.file_name, "w")
-        f.write(f"Virus name: {virus_name}/n Population Size: {pop_size}/n Vaccine Percentage: {vacc_percentage}/n Virus Mortality Rate: {mortality_rate}/n Virus Reproduction Rate: {repro_num}/n Initial Infected: {initial_infected}\n")
+        f.write(f"Virus name: {virus_name} Population Size: {pop_size} Vaccine Percentage: {vacc_percentage} Virus Mortality Rate: {mortality_rate} Virus Reproduction Rate: {repro_num} Initial Infected: {initial_infected}\n")
 
     def log_interaction(self, person, random_person, random_person_sick=None,
                         random_person_vacc=None, did_infect=None):
@@ -72,7 +72,7 @@ class Logger(object):
         else:
             f.write(f"{person._id} survived infection and is now immune\n")
 
-    def log_time_step(self, time_step_number, num_infected, num_died, total_infected, total_dead):
+    def log_time_step(self, time_step_number, num_infected, num_died, total_infected, total_dead, num_vaxxed, total_vaxxed):
         ''' STRETCH CHALLENGE DETAILS:
 
         If you choose to extend this method, the format of the summary statistics logged
@@ -91,5 +91,5 @@ class Logger(object):
         # new one begins.
         # NOTE: Here is an opportunity for a stretch challenge!
         f = open(self.file_name, "a")
-        f.write(f"Number of people infected: {num_infected} Total infected: {total_infected} Number of people who died: {num_died} Total people dead: {total_dead}\n")
+        f.write(f"Number of people infected: {num_infected} Total infected: {total_infected} Number of people who died: {num_died} Total people dead: {total_dead} Number of People Vaccinated from Survival: {num_vaxxed} Total people Vaccinated: {total_vaxxed}\n")
         f.write(f"Time step {time_step_number} ended, beginning {time_step_number + 1}\n")

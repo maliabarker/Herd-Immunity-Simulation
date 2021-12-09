@@ -1,0 +1,17 @@
+——————————————————————————————————————————————————————————————————————————————————————————
+What were the inputs you gave the simulation? (Population size, percent vaccinated, virus name, mortality rate, reproductive rate)
+
+The simulation took in a population size, a percentage of people vaccinated, an amount of initially infected people, and a virus object. The virus object included a name, a reproduction rate, and a mortality rate.
+For my final test I used some statistics of COVID-19, which I named SARS-CoV-2, with a population size of 100,000, a 60% inital vaccination rate (which is accurate to the amount of people vaccinated in the U.S.), and 113 initally infected people. The virus itself had a reproduction rate of 90% and a mortality rate of 1.6%.
+——————————————————————————————————————————————————————————————————————————————————————————
+What percentage of the population became infected at some point before the virus burned out?
+
+In this simulation with COVID, about 40% of the population became infected after 4 time steps.
+——————————————————————————————————————————————————————————————————————————————————————————
+What percentage of the population died from the virus?
+
+About 0.6% of people in the population died from the virus.
+——————————————————————————————————————————————————————————————————————————————————————————
+Out of all interactions sick individuals had during the entire simulation, how many total interactions did we see where a vaccination saved a person from potentially becoming infected?
+
+As I found from my survived_by_vaxx parameter in the simulation's init method, people were saved from infection by vaccinatiin over 2 million times (exactly 2,583,339 times).
